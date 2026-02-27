@@ -3,7 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT Search Pro</title>
+    <link rel="icon" type="image/svg+xml" href="/ico.svg">
+    <meta name="description" content="TubeLens is a powerful YouTube research tool for creators and marketers. Find viral videos, analyze niches, discover content gaps, and export results — all in one place.">
+    <meta name="keywords" content="YouTube research tool, niche research, YouTube SEO, viral video finder, YouTube analytics, content gap finder, YouTube keyword tool, video ideas generator, YouTube competitor analysis">
+    <meta name="author" content="TubeLens">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#06060e">
+    <link rel="canonical" href="https://tubelens.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TubeLens — YouTube Niche Research Tool">
+    <meta property="og:description" content="Find viral videos, analyze niches, spot content gaps and generate video ideas. The ultimate YouTube research tool for creators.">
+    <meta property="og:url" content="https://tubelens.app/">
+    <meta property="og:site_name" content="TubeLens">
+    <meta property="og:image" content="https://tubelens.app/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TubeLens — YouTube Niche Research Tool">
+    <meta name="twitter:description" content="Find viral videos, analyze niches, spot content gaps and generate video ideas.">
+    <meta name="twitter:image" content="https://tubelens.app/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "TubeLens",
+      "description": "YouTube niche research tool for creators and marketers. Find viral videos, analyze niches, discover content gaps.",
+      "url": "https://tubelens.app",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <title>TubeLens — YouTube Niche Research Tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -356,19 +395,19 @@
         .ch-mini-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, rgba(190,210,255,0.6), rgba(255,220,100,0.4)); transition: width 0.7s; }
 
         
-        .ai-report {
+        .niche-report {
             font-size: 0.77rem; line-height: 1.65; color: rgba(255,255,255,0.72);
         }
-        .ai-report h4 { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.8px; margin: 10px 0 4px; }
-        .ai-report p  { margin-bottom: 4px; }
-        .ai-report .highlight { color: rgba(255,220,120,0.9); font-weight: 500; }
-        .ai-report .green { color: rgba(100,220,170,0.9); font-weight: 500; }
-        .ai-report .red   { color: rgba(255,120,100,0.9); font-weight: 500; }
-        .ai-loading { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-faint); padding: 8px 0; }
-        .ai-loading .dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,220,120,0.6); animation: ai-pulse 1.2s ease infinite; }
-        .ai-loading .dot:nth-child(2) { animation-delay: 0.2s; }
-        .ai-loading .dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes ai-pulse { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.4)} }
+        .niche-report h4 { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.8px; margin: 10px 0 4px; }
+        .niche-report p  { margin-bottom: 4px; }
+        .niche-report .highlight { color: rgba(255,220,120,0.9); font-weight: 500; }
+        .niche-report .green { color: rgba(100,220,170,0.9); font-weight: 500; }
+        .niche-report .red   { color: rgba(255,120,100,0.9); font-weight: 500; }
+        .nl { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-faint); padding: 8px 0; }
+        .nl .dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,220,120,0.6); animation: nl-pulse 1.2s ease infinite; }
+        .nl .dot:nth-child(2) { animation-delay: 0.2s; }
+        .nl .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes nl-pulse { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.4)} }
 
         
         .dur-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font-size: 0.72rem; }
@@ -409,7 +448,7 @@
 <header class="header">
     <div class="logo">
         <div class="logo-mark">▶</div>
-        <div class="logo-name">YT Search <span>Pro</span></div>
+        <div class="logo-name">Tube<span>Lens</span></div>
     </div>
     <div class="header-right">
         <button class="header-btn" id="gapFinderBtn" onclick="togGap()" title="Highlight videos with high views but small channels">⚡ Gap Finder</button>
@@ -706,12 +745,12 @@
         
         <div class="intel-card" id="icard-ai">
             <div class="intel-card-header" onclick="togCard('ai')">
-                <span>🤖</span> AI Niche Report
+                <span>📊</span> Smart Niche Report
                 <span class="badge">Auto</span>
             </div>
             <div class="intel-card-body" id="ibody-ai">
-                <div id="ai-report-content" class="ai-report">
-                    <div class="ai-loading"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Analyzing results…</span></div>
+                <div id="ai-report-content" class="niche-report">
+                    <div class="nl"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Building report…</span></div>
                 </div>
             </div>
         </div>
@@ -723,10 +762,7 @@
 </div>
 <div id="toast"></div>
 
-<script>
-var _init = false;
-var _ts = +new Date();
-let tags = [];
+<script>let tags = [];
 let curVw = 'grid';
 let lRes = [];
 let gapOn = false;
@@ -735,19 +771,19 @@ const LR = { all:'Worldwide', en:'US', es:'ES', 'es-mx':'MX', pt:'BR', 'pt-pt':'
 const tagBox = document.getElementById('tagBox');
 const nicheInput = document.getElementById('nicheInput');
 nicheInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ',') {  
+    if (e.key === 'Enter' || e.key === ',') {
         e.preventDefault();
         const val = e.target.value.trim().replace(/,$/, '');
         if (val && !tags.includes(val)) { tags.push(val); rTags(); }
         e.target.value = '';
     }
-    if (e.key === 'Backspace' && e.target.value === '' && tags.length) { tags.pop(); rTags(); }  
+    if (e.key === 'Backspace' && e.target.value === '' && tags.length) { tags.pop(); rTags(); }
     if (e.key === 'Enter' && !e.target.value.trim()) doSearch();
 });
 tagBox.addEventListener('click', () => nicheInput.focus());
 function rTags() {
     document.querySelectorAll('.tag').forEach(t => t.remove());
-    tags.forEach((tag, i) => {  
+    tags.forEach((tag, i) => {
         const el = document.createElement('div');
         el.className = 'tag'; el.setAttribute('dir','auto');
         el.innerHTML = `<span dir="auto">${esc(tag)}</span><span class="remove" onclick="rmTag(${i})">×</span>`;
@@ -769,7 +805,6 @@ function setVw(v) {
     document.getElementById('results').classList.toggle('list-view', v==='list');
     document.getElementById('gridBtn').classList.toggle('active', v==='grid');
     document.getElementById('listBtn').classList.toggle('active', v==='list');
-
 }
 function toast(msg) {
     const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
@@ -789,7 +824,7 @@ function tAgo(d) {
     if (days<1) return 'Today'; if (days<7) return `${days}d ago`;
     if (days<30) return `${Math.floor(days/7)}w ago`; if (days<365) return `${Math.floor(days/30)}mo ago`;
     return `${Math.floor(days/365)}y ago`;
-}  
+}
 function sCol(val, type) {
     if (type==='viral')  return val>=70?'#ff6b35':val>=40?'#ffd60a':'rgba(255,255,255,.4)';
     if (type==='opp')    return val>=70?'#34d399':val>=40?'#60a5fa':'rgba(255,255,255,.4)';
@@ -805,7 +840,7 @@ function cSort(type, btn) {
     document.querySelectorAll('.sort-tab').forEach(t => t.classList.remove('active'));
     btn.classList.add('active');
     let sorted = [...lRes];
-    if (type==='viral')       sorted.sort((a,b) => (b._viralScore||0)-(a._viralScore||0));  
+    if (type==='viral')       sorted.sort((a,b) => (b._viralScore||0)-(a._viralScore||0));
     else if (type==='opportunity') sorted.sort((a,b) => (b._opportunityScore||0)-(a._opportunityScore||0));
     else if (type==='views')  sorted.sort((a,b) => parseInt(b.statistics?.viewCount||0)-parseInt(a.statistics?.viewCount||0));
     else if (type==='vpd')    sorted.sort((a,b) => (b._viewsPerDay||0)-(a._viewsPerDay||0));
@@ -820,7 +855,7 @@ function sSav(arr) { localStorage.setItem('yt_saved_searches', JSON.stringify(ar
 function savSrch() {
     const query = [...tags, nicheInput.value.trim()].filter(Boolean).join(', ');
     if (!query) { toast('Add keywords first'); return; }
-    const lang  = document.getElementById('language').value;  
+    const lang  = document.getElementById('language').value;
     const year  = document.getElementById('year').value;
     const order = document.getElementById('order').value;
     const saved = gSav();
@@ -850,20 +885,19 @@ function rSav() {
     if (!saved.length) {
         list.innerHTML = '<div style="font-size:.72rem;color:var(--text-faint);text-align:center;padding:4px 0">No saved searches yet</div>';
         return;
-
     }
     list.innerHTML = saved.map((s,i) => `
         <div class="saved-search-item" onclick="ldSrch(${JSON.stringify(s).replace(/"/g,'&quot;')})">
             <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(s.label)}</span>
             <span class="del" onclick="event.stopPropagation();delSrch(${i})">✕</span>
-        </div>`).join('');  
+        </div>`).join('');
 }
 async function expCsv() {
     if (!lRes.length) { toast('Nothing to export'); return; }
     try {
         const csvText = await new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', `${window.location.origin}/api/export/csv`);  
+            xhr.open('POST', `${window.location.origin}/api/export/csv`);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.timeout = 15000;
             xhr.onload  = () => xhr.status === 200 ? resolve(xhr.responseText) : reject(new Error('Export failed: ' + xhr.status));
@@ -873,9 +907,9 @@ async function expCsv() {
         const blob = new Blob([csvText], { type: 'text/csv' });
         const url  = URL.createObjectURL(blob);
         const a    = document.createElement('a');
-        a.href = url; a.download = 'yt-search-pro.csv'; a.click();
+        a.href = url; a.download = 'tubelens-export.csv'; a.click();
         URL.revokeObjectURL(url);
-        toast('✓ CSV downloaded');  
+        toast('✓ CSV downloaded');
     } catch(e) { toast('Export failed: ' + e.message); }
 }
 function rRes(items) {
@@ -886,15 +920,15 @@ function rRes(items) {
     const showChannel = document.getElementById('showChannel').checked;
     const showVpd     = document.getElementById('showVpd').checked;
     resultsDiv.innerHTML = '';
-    setVw(curVw);  
+    setVw(curVw);
     items.forEach((item, idx) => {
         const videoId  = item.id;
         const title    = esc(item.snippet?.title || 'Untitled');
-        const thumb    = item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.medium?.url || '';  
+        const thumb    = item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.medium?.url || '';
         const views    = parseInt(item.statistics?.viewCount||0);
         const likes    = parseInt(item.statistics?.likeCount||0);
         const dur      = item._formattedDuration||'';
-        const isShort  = item._totalSeconds<=60;  
+        const isShort  = item._totalSeconds<=60;
         const viral    = item._viralScore||0;
         const opp      = item._opportunityScore||0;
         const ta       = item._titleAnalysis||{};
@@ -908,8 +942,8 @@ function rRes(items) {
             ? `<div class="score-badge viral${viral>=70?' high':''}">🔥 ${viral}</div>` : '';
         const oppBadge = showOpp && opp > 20
             ? `<div class="score-badge opp${opp>=70?' high':''}">⚡ ${opp}</div>` : '';
-        var pwChips = showPower && ta.powerWords?.length
-            ? `<div class="power-words-row">${ta.powerWords.map(w=>`<span class="pw-chip">${esc(w)}</span>`).join('')}</div>` : '';  
+        const pwChips = showPower && ta.powerWords?.length
+            ? `<div class="power-words-row">${ta.powerWords.map(w=>`<span class="pw-chip">${esc(w)}</span>`).join('')}</div>` : '';
         let channelBlock = '';
         if (showChannel && ch) {
             channelBlock = `
@@ -922,7 +956,7 @@ function rRes(items) {
                 </div>`;
         }
         const vpdBlock = showVpd && vpd > 0 ? `
-            <div class="vpd-bar">  
+            <div class="vpd-bar">
                 <span class="vpd">${fNum(vpd)}/day</span>
                 <div class="vpd-bar-fill"><div class="vpd-bar-inner" style="width:${vpdPct}%"></div></div>
             </div>` : '';
@@ -939,19 +973,19 @@ function rRes(items) {
                     ${isGap?'<span class="shorts-badge" style="left:auto;right:7px;top:6px;background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.4);color:#6ee7b7">GAP</span>':''}
                     <div class="score-badges">${viralBadge}${oppBadge}</div>
                 </div>
-                <div class="video-info">  
+                <div class="video-info">
                     <div class="video-title" dir="auto">${title}</div>
                     <div class="video-meta">
                         <span class="views">👁 ${fNum(views)}</span>
-                        ${likes>0?`<span>👍 ${fNum(likes)}</span>`:''}  
+                        ${likes>0?`<span>👍 ${fNum(likes)}</span>`:''}
                         ${channelBlock}
                         <span class="date">${tAgo(item.snippet?.publishedAt)}</span>
-                    </div>  
+                    </div>
                     ${vpdBlock}
                     ${pwChips}
                     <div class="engagement-bar"><div class="engagement-fill" style="width:${engPct}%"></div></div>
                 </div>
-            </div>`;  
+            </div>`;
         resultsDiv.appendChild(card);
         requestAnimationFrame(() => requestAnimationFrame(() => {
             card.style.opacity = '1'; card.style.transform = 'translateY(0)';
@@ -960,15 +994,15 @@ function rRes(items) {
 }
 function showCh(el) {
     document.querySelectorAll('.channel-tooltip').forEach(t => t.remove());
-    let ch;  
+    let ch;
     try { ch = JSON.parse(el.getAttribute('data-ch')); } catch { return; }
     const tt = document.createElement('div');
-    tt.className = 'channel-tooltip show';  
+    tt.className = 'channel-tooltip show';
     tt.innerHTML = `
         <div class="ch-tooltip-inner">
             ${ch.thumbnail?`<img class="ch-thumb" src="${esc(ch.thumbnail)}" onerror="this.style.display='none'">`:''}
-            <div>  
-                <div class="ch-name">${esc(ch.title||'')}</div>  
+            <div>
+                <div class="ch-name">${esc(ch.title||'')}</div>
                 <div class="ch-country">${ch.country||'Unknown region'} · since ${ch.publishedAt?new Date(ch.publishedAt).getFullYear():''}</div>
             </div>
         </div>
@@ -981,7 +1015,6 @@ function showCh(el) {
     if (card) {
         card.style.position = 'relative';
         card.appendChild(tt);
-
     }
 }
 function hideCh(el) {
@@ -998,7 +1031,7 @@ async function doSearch() {
     const order      = document.getElementById('order').value;
     const minViews   = document.getElementById('minViews').value;
     const maxResults = document.getElementById('maxResults').value;
-    var resultsDiv = document.getElementById('results');
+    const resultsDiv = document.getElementById('results');
     const btn        = document.getElementById('searchBtn');
     let queryParts = [...tags];
     const inputVal = nicheInput.value.trim();
@@ -1006,7 +1039,7 @@ async function doSearch() {
     const queryBase = queryParts.join(' ');
     if (!queryBase) { toast('Add at least one keyword first'); return; }
     const q = type==='shorts' ? `${queryBase} #shorts` : `${queryBase} -#shorts`;
-    const d = type==='shorts' ? 'short' : duration;  
+    const d = type==='shorts' ? 'short' : duration;
     btn.disabled = true; btn.textContent = 'Searching…';
     resultsDiv.innerHTML = `<div class="state-msg"><div class="spinner"></div><p>Searching <strong dir="auto">${esc(queryBase)}</strong> in ${LR[lang]||'??'}…</p></div>`;
     document.getElementById('toolbar').style.display = 'none';
@@ -1016,7 +1049,7 @@ async function doSearch() {
     try {
         const data = await new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            var url = `${window.location.origin}/api/search?${params}`;
+            const url = `${window.location.origin}/api/search?${params}`;
             xhr.open('GET', url);
             xhr.timeout = 30000;
             xhr.onload  = () => {
@@ -1033,8 +1066,7 @@ async function doSearch() {
         }
         if (!data.items?.length) {
             resultsDiv.innerHTML = `<div class="state-msg"><div class="icon">◌</div><h3>No results found</h3><p>Try different keywords or filters.</p></div>`;
-            document.getElementById('headerCount').textContent = '0 results'; return;  
-
+            document.getElementById('headerCount').textContent = '0 results'; return;
         }
         lRes = data.items;
         mVpd = Math.max(1, ...data.items.map(v => v._viewsPerDay||0));
@@ -1061,20 +1093,20 @@ async function doSearch() {
     }
 }
 let intOpen = false;
-function togIntel() {  
+function togIntel() {
     intOpen = !intOpen;
     const panel = document.getElementById('intelPanel');
-    const btn   = document.getElementById('intelBtn');  
+    const btn   = document.getElementById('intelBtn');
     panel.classList.toggle('open', intOpen);
     btn.classList.toggle('active', intOpen);
     if (intOpen && lRes.length) runIntel(lRes);
 }
 function togCard(id) {
-    var body = document.getElementById('ibody-' + id);  
+    const body = document.getElementById('ibody-' + id);
     body.style.display = body.style.display === 'none' ? '' : 'none';
 }
 function runIntel(items) {
-    if (!items.length) return;  
+    if (!items.length) return;
     calcSat(items);
     calcDays(items);
     calcDur(items);
@@ -1082,7 +1114,6 @@ function runIntel(items) {
     calcDNA(items);
     genIdeas(items);
     genReport(items);
-
 }
 function calcSat(items) {
     const avgViews = items.reduce((s,v) => s + parseInt(v.statistics?.viewCount||0), 0) / items.length;
@@ -1097,10 +1128,10 @@ function calcSat(items) {
         desc = 'Low competition — great time to enter';
         detail = `Most channels have <span style="color:#34d399;font-weight:600">${fNum(avgSubs)}</span> avg subs but videos still get <span style="color:#34d399;font-weight:600">${fNum(avgViews)}</span> avg views. Demand far exceeds supply.`;
     } else if (satPct < 50) {
-        label = 'MODERATE'; color = 'rgba(255,220,100,0.9)';  
+        label = 'MODERATE'; color = 'rgba(255,220,100,0.9)';
         desc = 'Some competition, but gaps exist';
-        detail = `Niche has healthy engagement. Look for underserved sub-niches. Avg channel size: <span style="color:rgba(255,220,100,.9);font-weight:600">${fNum(avgSubs)}</span> subs.`;  
-    } else if (satPct < 75) {  
+        detail = `Niche has healthy engagement. Look for underserved sub-niches. Avg channel size: <span style="color:rgba(255,220,100,.9);font-weight:600">${fNum(avgSubs)}</span> subs.`;
+    } else if (satPct < 75) {
         label = 'COMPETITIVE'; color = '#f97316';
         desc = 'Crowded — differentiate hard';
         detail = `Big channels dominate. You need a unique angle or better production. Avg channel: <span style="color:#f97316;font-weight:600">${fNum(avgSubs)}</span> subs.`;
@@ -1112,21 +1143,21 @@ function calcSat(items) {
     document.getElementById('sat-badge').textContent = label;
     document.getElementById('sat-badge').style.color  = color;
     document.getElementById('sat-val').textContent  = satPct + '%';
-    document.getElementById('sat-val').style.color  = color;  
+    document.getElementById('sat-val').style.color  = color;
     document.getElementById('sat-desc').textContent = desc;
     document.getElementById('sat-detail').innerHTML  = detail;
-    var offset = 157 - (satPct / 100) * 157;
+    const offset = 157 - (satPct / 100) * 157;
     const arc = document.getElementById('sat-arc');
     arc.style.strokeDashoffset = offset;
-    arc.style.stroke = color;  
+    arc.style.stroke = color;
 }
 function calcDays(items) {
-    const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];  
+    const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const dayCounts = Array(7).fill(0);
     const dayViews  = Array(7).fill(0);
     items.forEach(v => {
         const d = new Date(v.snippet?.publishedAt||'');
-        if (!isNaN(d)) {  
+        if (!isNaN(d)) {
             dayCounts[d.getDay()]++;
             dayViews[d.getDay()] += parseInt(v.statistics?.viewCount||0);
         }
@@ -1144,13 +1175,13 @@ function calcDays(items) {
         </div>`;
     }).join('');
     document.getElementById('time-badge').textContent = DAYS[bestIdx];
-    document.getElementById('month-insight').textContent =  
+    document.getElementById('month-insight').textContent =
         `Top performers in this niche tend to publish on ${DAYS[bestIdx]}s. Content uploaded ${DAYS[bestIdx]} averages ${fNum(dayAvg[bestIdx])} views.`;
 }
 function calcDur(items) {
     const buckets = { 'Shorts (< 1m)':0, 'Short (1–5m)':0, 'Medium (5–15m)':0, 'Long (15–30m)':0, 'Very Long (30m+)':0 };
     const viewsByBucket = { 'Shorts (< 1m)':0, 'Short (1–5m)':0, 'Medium (5–15m)':0, 'Long (15–30m)':0, 'Very Long (30m+)':0 };
-    items.forEach(v => {  
+    items.forEach(v => {
         const s = v._totalSeconds || 0;
         const views = parseInt(v.statistics?.viewCount||0);
         let bucket;
@@ -1163,7 +1194,7 @@ function calcDur(items) {
         viewsByBucket[bucket] += views;
     });
     const total = items.length;
-    const colors = ['rgba(255,220,100,0.7)','rgba(190,210,255,0.7)','rgba(100,220,170,0.7)','rgba(255,150,100,0.7)','rgba(200,150,255,0.7)'];  
+    const colors = ['rgba(255,220,100,0.7)','rgba(190,210,255,0.7)','rgba(100,220,170,0.7)','rgba(255,150,100,0.7)','rgba(200,150,255,0.7)'];
     const keys   = Object.keys(buckets);
     const maxCount = Math.max(...Object.values(buckets), 1);
     const avgByBucket = keys.map(k => buckets[k] > 0 ? viewsByBucket[k] / buckets[k] : 0);
@@ -1176,7 +1207,7 @@ function calcDur(items) {
             <span class="dur-count">${buckets[k]}</span>
         </div>`;
     }).join('');
-    document.getElementById('dur-insight').textContent =  
+    document.getElementById('dur-insight').textContent =
         `Best performing: "${bestBucket}" with avg ${fNum(Math.max(...avgByBucket))} views.`;
 }
 function calcCh(items) {
@@ -1184,7 +1215,7 @@ function calcCh(items) {
     items.forEach(v => {
         const ch = v._channel;
         if (!ch) return;
-        if (!chMap[ch.id]) chMap[ch.id] = { name: ch.title, subs: ch.subscriberCount, totalViews: 0, count: 0 };  
+        if (!chMap[ch.id]) chMap[ch.id] = { name: ch.title, subs: ch.subscriberCount, totalViews: 0, count: 0 };
         chMap[ch.id].totalViews += parseInt(v.statistics?.viewCount||0);
         chMap[ch.id].count++;
     });
@@ -1200,10 +1231,9 @@ function calcCh(items) {
                     <span class="ch-bar-val">${fNum(c.totalViews)}</span>
                 </div>
                 <div class="ch-mini-bar"><div class="ch-mini-fill" style="width:${pct}%"></div></div>
-            </div>  
+            </div>
         </div>`;
     }).join('');
-
 }
 function calcDNA(items) {
     const stopWords = new Set(['the','a','an','in','on','at','to','for','of','and','or','is','are','was','with','how','what','why','this','that','i','you','my','your','this','it','its','will','can','do','does','be','not','by']);
@@ -1239,12 +1269,12 @@ function calcDNA(items) {
 }
 let ideaData = null;
 function genIdeas(items) {
-    ideaData = items;  
+    ideaData = items;
     _bIdeas(items);
 }
 function regenIdeas() {
     if (ideaData) _bIdeas(ideaData);
-}  
+}
 function _bIdeas(items) {
     const sorted  = [...items].sort((a,b) => parseInt(b.statistics?.viewCount||0)-parseInt(a.statistics?.viewCount||0));
     const topItems = sorted.slice(0, Math.min(10, sorted.length));
@@ -1274,7 +1304,7 @@ function _bIdeas(items) {
         `The secret ${mainKw} hack nobody talks about`,
         `${kw3} to 10x your ${mainKw} results (with proof)`,
     ]).slice(0, 10);
-    document.getElementById('ideas-list').innerHTML = templates.map((t,i) =>  
+    document.getElementById('ideas-list').innerHTML = templates.map((t,i) =>
         `<div class="idea-item" onclick="cpyIdea(this, '${esc(t)}')">
             <span class="idea-num">${i+1}</span>
             <span style="flex:1">${esc(t)}</span>
@@ -1289,7 +1319,7 @@ function cpyIdea(el, text) {
     setTimeout(()=>{ copy.textContent = '⎘'; copy.style.color = ''; }, 2000);
 }
 function genReport(items) {
-    var container = document.getElementById('ai-report-content');
+    const container = document.getElementById('ai-report-content');
     const avgViews  = Math.round(items.reduce((s,v)=>s+parseInt(v.statistics?.viewCount||0),0)/items.length);
     const avgSubs   = Math.round(items.reduce((s,v)=>s+parseInt(v._channel?.subscriberCount||0),0)/items.length);
     const avgViral  = Math.round(items.reduce((s,v)=>s+(v._viralScore||0),0)/items.length);
@@ -1305,10 +1335,10 @@ function genReport(items) {
     const topTitle = sorted[0]?.snippet?.title || 'N/A';
     const topViews = parseInt(sorted[0]?.statistics?.viewCount||0);
     const query = [...tags, nicheInput.value.trim()].filter(Boolean).join(', ') || 'this niche';
-    container.innerHTML = `<div class="ai-report">
+    container.innerHTML = `<div class="niche-report">
         <h4>Overview</h4>
         <p>Based on <span class="highlight">${items.length} videos</span> analyzed, the "<span class="highlight">${esc(query)}</span>" niche is currently ${satLabel} with <span class="highlight">${fNum(totalViews)}</span> total views across results.</p>
-        <h4>Audience Demand</h4>  
+        <h4>Audience Demand</h4>
         <p>Average views per video: <span class="highlight">${fNum(avgViews)}</span>. The typical channel in this niche has <span class="highlight">${fNum(avgSubs)}</span> subscribers — ${avgSubs < avgViews * 0.1 ? '<span class="green">small channels are getting disproportionate views</span>, which signals an untapped opportunity.' : 'established creators dominate, so differentiation is key.'}</p>
         <h4>Content Format</h4>
         <p>The dominant format is <span class="highlight">${durLabel}</span>. ${bestDur === 'long' ? '<span class="highlight">Long-form content dominates</span> — invest in quality and depth.' : bestDur === 'short' ? 'Short content wins here — optimize for retention in the first 30 seconds.' : 'Mid-length content performs best — aim for the 7–15 min sweet spot.'}</p>
@@ -1327,16 +1357,16 @@ function genReport(items) {
 }
 (function(){
     const canvas = document.getElementById('starfield');
-    var ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
     let W, H, stars=[];
     const COUNT=320, SPD=0.008;
     function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
-    function rand(a,b){ return a+Math.random()*(b-a); }  
+    function rand(a,b){ return a+Math.random()*(b-a); }
     function init(){
         stars=[];
         for(let i=0;i<COUNT;i++){
-            const sz=Math.random();  
-            const r=sz<.75?rand(.15,.55):sz<.93?rand(.55,1.1):rand(1.1,1.9);  
+            const sz=Math.random();
+            const r=sz<.75?rand(.15,.55):sz<.93?rand(.55,1.1):rand(1.1,1.9);
             const cr=Math.random();
             const col=cr<.6?'rgba(255,252,240,':cr<.8?'rgba(255,240,200,':cr<.92?'rgba(240,245,255,':'rgba(255,230,150,';
             stars.push({x:Math.random()*W,y:Math.random()*H,r,col,phase:Math.random()*Math.PI*2,speed:rand(.3,1.4)*SPD,spike:r>1.3&&Math.random()<.5});
@@ -1349,22 +1379,19 @@ function genReport(items) {
             const g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*5);
             g.addColorStop(0,s.col+(a*.35)+')'); g.addColorStop(1,s.col+'0)');
             ctx.beginPath(); ctx.arc(s.x,s.y,s.r*5,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
-
         }
         if(s.spike&&a>.5){
             const len=s.r*9*a; ctx.strokeStyle=s.col+(a*.3)+')'; ctx.lineWidth=.5;
             ctx.beginPath(); ctx.moveTo(s.x-len,s.y); ctx.lineTo(s.x+len,s.y); ctx.stroke();
             ctx.beginPath(); ctx.moveTo(s.x,s.y-len); ctx.lineTo(s.x,s.y+len); ctx.stroke();
-
         }
     }
     function frame(){ ctx.clearRect(0,0,W,H); stars.forEach(s=>{s.phase+=s.speed;draw(s);}); requestAnimationFrame(frame); }
-    resize(); init(); frame();  
+    resize(); init(); frame();
     window.addEventListener('resize',()=>{resize();init();});
 })();
 updRgn();
 rSav();
-
 
 </script>
 </body>
