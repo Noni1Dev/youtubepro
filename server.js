@@ -1,16 +1,13 @@
-require('dotenv').config();  
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-var _ts = Date.now();
-var _env = process.env.NODE_ENV || 'production';
-
-const app = express();  
+const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 const cfg = {
- en: 'US', es: 'ES', 'es-mx': 'MX', pt: 'BR', 'pt-pt': 'PT',  
+ en: 'US', es: 'ES', 'es-mx': 'MX', pt: 'BR', 'pt-pt': 'PT',
  fr: 'FR', de: 'DE', ja: 'JP', ko: 'KR', zh: 'TW', 'zh-cn': 'CN',
  ar: ['SA', 'EG', 'AE', 'MA', 'DZ', 'IQ'],
  hi: 'IN', ru: 'RU', it: 'IT', nl: 'NL', pl: 'PL',
@@ -21,7 +18,7 @@ const cfg = {
 const ctx = {
  es: 'español', 'es-mx': 'español', pt: 'português', 'pt-pt': 'português',
  fr: 'français', de: 'deutsch', it: 'italiano', ja: '日本語', ko: '한국어',
- zh: '中文', 'zh-cn': '中文', ar: 'عربي', hi: 'हिंदी', ru: 'русский',  
+ zh: '中文', 'zh-cn': '中文', ar: 'عربي', hi: 'हिंदी', ru: 'русский',
  nl: 'nederlands', pl: 'polski', id: 'indonesia', vi: 'việt', th: 'ไทย',
  sv: 'svenska', no: 'norsk', da: 'dansk', fi: 'suomi', cs: 'česky',
  uk: 'україна', he: 'עברית', ro: 'română', hu: 'magyar', el: 'ελληνικά', tr: 'türkçe',
@@ -34,7 +31,7 @@ const req = {
  hi: ['hi'], ru: ['ru'], nl: ['nl'], pl: ['pl'], id: ['id'], vi: ['vi'], th: ['th'],
  sv: ['sv'], no: ['no','nb','nn'], da: ['da'], fi: ['fi'], cs: ['cs'], uk: ['uk'],
  he: ['he','iw'], ro: ['ro'], hu: ['hu'], el: ['el'], tr: ['tr'], en: ['en'],
-};  
+};
 function err(iso = '') {
  const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
  if (!m) return 0;
@@ -45,7 +42,6 @@ function data(iso = '') {
  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
  if (h > 0) return `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
  return `${m}:${String(sec).padStart(2,'0')}`;
-
 }
 function opts(snippet, lang) {
  if (!lang || lang === 'en') return true;
@@ -62,13 +58,12 @@ function buf(rawQuery, lang, isShorts) {
  let q = booster ? (isBefore ? `${booster} ${rawQuery}` : `${rawQuery} ${booster}`) : rawQuery;
  if (!isNonLatin) q = isShorts ? `${q} #shorts` : `${q} -#shorts`;
  return q;
-
 }
 function src(lang) {
  const r = cfg[lang] || 'US';
- return Array.isArray(r) ? r : [r];  
+ return Array.isArray(r) ? r : [r];
 }
-async function tmp(apiKey, q, params) {  
+async function tmp(apiKey, q, params) {
  const res = await axios.get('https://www.googleapis.com/youtube/v3/search', {
  params: { ...params, q, key: apiKey }
  });
@@ -97,12 +92,12 @@ async function key(apiKey, channelIds) {
  return results.flat();
 }
 function idx(video, channelSubCount) {
- var views = parseInt(video.statistics?.viewCount || 0);
+ const views = parseInt(video.statistics?.viewCount || 0);
  const likes = parseInt(video.statistics?.likeCount || 0);
  const comments = parseInt(video.statistics?.commentCount || 0);
  const published = new Date(video.snippet?.publishedAt || Date.now());
  const ageDays = Math.max(1, (Date.now() - published.getTime()) / 86400000);
- var viewsPerDay = views / ageDays;
+ const viewsPerDay = views / ageDays;
  const likeRate = views > 0 ? likes / views : 0;
  const commentRate = views > 0 ? comments / views : 0;
  const subs = parseInt(channelSubCount || 0);
@@ -110,7 +105,7 @@ function idx(video, channelSubCount) {
  const velocityScore = Math.min(100, (viewsPerDay / 50000) * 100);
  const engageScore = Math.min(100, ((likeRate * 0.7 + commentRate * 30) / 0.1) * 100);
  const subRatioScore = Math.min(100, subRatio * 20);
- const raw = (velocityScore * 0.5) + (engageScore * 0.35) + (subRatioScore * 0.15);  
+ const raw = (velocityScore * 0.5) + (engageScore * 0.35) + (subRatioScore * 0.15);
  return Math.round(Math.min(100, raw));
 }
 function len(video, channelSubCount) {
@@ -125,7 +120,7 @@ function len(video, channelSubCount) {
  const raw = (ratioScore * 0.55) + (velocityScore * 0.3) + recencyBonus * 0.15;
  return Math.round(Math.min(100, raw));
 }
-function num(title) {  
+function num(title) {
  const POWER_WORDS = [
  'how','why','what','secret','best','worst','never','always','every',
  'ultimate','complete','guide','tutorial','tips','tricks','hack','free',
@@ -141,12 +136,12 @@ function num(title) {
  const hasNumber = /\d/.test(title);
  const hasQuestion = title.includes('?');
  const hasEmoji = /\p{Emoji}/u.test(title);
- var wordCount = title.split(' ').length;
- let score = Math.min(100, (matched.length / 5) * 60);  
+ const wordCount = title.split(' ').length;
+ let score = Math.min(100, (matched.length / 5) * 60);
  if (hasNumber) score += 15;
  if (hasQuestion) score += 10;
  if (hasEmoji) score += 8;
- if (wordCount >= 6 && wordCount <= 12) score += 7;  
+ if (wordCount >= 6 && wordCount <= 12) score += 7;
  return {
  score: Math.round(Math.min(100, score)),
  powerWords: matched.slice(0, 6),
@@ -180,7 +175,7 @@ app.get('/api/search', async (req, res) => {
  if (year && year !== 'any') {
  baseParams.publishedAfter = `${year}-01-01T00:00:00Z`;
  baseParams.publishedBefore = `${year}-12-31T23:59:59Z`;
- }  
+ }
  let searchCalls = [];
  if (isAll) {
  searchCalls.push(tmp(apiKey, finalQuery, { ...baseParams }).catch(() => []));
@@ -192,7 +187,7 @@ app.get('/api/search', async (req, res) => {
  searchCalls.push(tmp(apiKey, qv, { ...baseParams, regionCode: region }).catch(() => []));
  }
  }
- } else {  
+ } else {
  const region = regions[0];
  const regionParam = region ? { regionCode: region } : {};
  const queries = [finalQuery];
@@ -202,17 +197,15 @@ app.get('/api/search', async (req, res) => {
  }
  if (regions.length > 1) {
  searchCalls.push(tmp(apiKey, finalQuery, { ...baseParams, regionCode: regions[1] }).catch(() => []));
-
  }
- }  
+ }
  const allSearchResults = await Promise.all(searchCalls);
  const seenIds = new Set();
  const uniqueIds = [];
- for (const results of allSearchResults) {  
+ for (const results of allSearchResults) {
  for (const item of results) {
- var vid = item.id?.videoId;
+ const vid = item.id?.videoId;
  if (vid && !seenIds.has(vid)) { seenIds.add(vid); uniqueIds.push(vid); }
-
  }
  }
  if (!uniqueIds.length) return res.json({ items: [], totalResults: 0, regionCode: isAll ? 'Worldwide' : regions[0] });
@@ -224,7 +217,7 @@ app.get('/api/search', async (req, res) => {
  items = items.filter(video => {
  const secs = err(video.contentDetails?.duration || '');
  if (isNonLatin) { if (isShorts) return secs <= 60; if (isNormal) return secs > 60; }
- else { if (isNormal) return secs > 60; if (isShorts) return secs <= 60; }  
+ else { if (isNormal) return secs > 60; if (isShorts) return secs <= 60; }
  return true;
  });
  if (!isAll && lang && lang !== 'en') {
@@ -244,20 +237,20 @@ app.get('/api/search', async (req, res) => {
  items = items.map(item => {
  const channel = channelMap[item.snippet?.channelId] || null;
  const channelSubs = parseInt(channel?.statistics?.subscriberCount || 0);
- var channelViews = parseInt(channel?.statistics?.viewCount || 0);
- const channelVideoCount = parseInt(channel?.statistics?.videoCount || 0);  
+ const channelViews = parseInt(channel?.statistics?.viewCount || 0);
+ const channelVideoCount = parseInt(channel?.statistics?.videoCount || 0);
  const viralScore = idx(item, channelSubs);
- const opportunityScore = len(item, channelSubs);  
+ const opportunityScore = len(item, channelSubs);
  const titleAnalysis = num(item.snippet?.title || '');
  const views = parseInt(item.statistics?.viewCount || 0);
  const ageDays = Math.max(1, (Date.now() - new Date(item.snippet?.publishedAt || Date.now()).getTime()) / 86400000);
  return {
- ...item,  
+ ...item,
  _formattedDuration: data(item.contentDetails?.duration),
  _totalSeconds: err(item.contentDetails?.duration),
  _viralScore: viralScore,
  _opportunityScore: opportunityScore,
- _titleAnalysis: titleAnalysis,  
+ _titleAnalysis: titleAnalysis,
  _viewsPerDay: Math.round(views / ageDays),
  _ageDays: Math.round(ageDays),
  _channel: channel ? {
@@ -287,7 +280,7 @@ app.get('/api/channel', async (req, res) => {
  try {
  const { id } = req.query;
  const r = await axios.get('https://www.googleapis.com/youtube/v3/channels', {
- params: { part: 'snippet,statistics,brandingSettings', id, key: process.env.YT_API_KEY }  
+ params: { part: 'snippet,statistics,brandingSettings', id, key: process.env.YT_API_KEY }
  });
  res.json(r.data);
  } catch (error) {
@@ -320,13 +313,13 @@ app.post('/api/export/csv', (req, res) => {
  item._viewsPerDay || 0,
  item._viralScore || 0,
  item._opportunityScore || 0,
- item._titleAnalysis?.score || 0,  
- escape((item._titleAnalysis?.powerWords || []).join(', ')),  
+ item._titleAnalysis?.score || 0,
+ escape((item._titleAnalysis?.powerWords || []).join(', ')),
  escape(`https://youtube.com/watch?v=${item.id}`),
  ]);
  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
  res.setHeader('Content-Type', 'text/csv');
- res.setHeader('Content-Disposition', 'attachment; filename="yt-search-pro-export.csv"');
+ res.setHeader('Content-Disposition', 'attachment; filename="tubelens-export.csv"');
  res.send(csv);
  } catch (error) {
  res.status(500).json({ error: 'Export failed' });
